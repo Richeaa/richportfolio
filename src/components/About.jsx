@@ -1,162 +1,276 @@
+import { motion } from "framer-motion";
 import ProfileLogo from "../assets/AboutAsset/Profil.png";
 
+const highlights = [
+  { number: "01", stat: "15+", label: "Projects", desc: "Web & data-driven builds" },
+  { number: "02", stat: "10+", label: "Volunteer", desc: "Community & campus programs" },
+  { number: "03", stat: "8+", label: "Certificates", desc: "Data & software credentials" },
+  { number: "04", stat: "3.93", label: "GPA", desc: "Out of 4.00 scale" },
+];
+
 const About = () => {
-  const highlights = [
-    { 
-      number: "3.92", 
-      label: "GPA",
-      icon: (
-        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-        </svg>
-      )
-    },
-    { 
-      number: "8th", 
-      label: "Semester",
-      icon: (
-        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-        </svg>
-      )
-    },
-    { 
-      number: "6+", 
-      label: "Volunteer Experience",
-      icon: (
-        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-      )
-    },
-    { 
-      number: "12+", 
-      label: "Projects Completed",
-      icon: (
-        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      )
-    },
-  ];
-
   return (
-    <>
-      <div id="about" className="lg:mt-36 relative overflow-hidden py-20 lg:py-16">
-        <div className="absolute inset-0"></div>
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <p className="text-blue-400 text-sm font-medium tracking-wider uppercase mb-3"
-            data-aos="fade-up">
-            Get to Know Me
-            </p>
-            <h1 
-              className="text-2xl md:text-4xl font-extrabold text-white  mb-4"
-              data-aos="fade-up" 
-              data-aos-offset="200"
-            >
-              About
-            </h1>
-            <div 
-            className="w-16 h-1 bg-blue-500 mx-auto"
-            data-aos="zoom-in" 
-            data-aos-delay="200"
-          ></div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 lg:gap-8 items-center mb-16">
-        
-            <div 
-              className="order-1 flex justify-center lg:justify-start"
-              data-aos="zoom-in"
-              data-aos-delay="100"
-            >
-              <div className="relative w-full max-w-md">
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 p-1">
-                <div className="bg-gray-900 rounded-2xl p-3">
-                  <img 
-                    src={ProfileLogo} 
-                    alt="Profile"  
-                    className="w-full rounded-xl shadow-2xl"
-                  />
-                </div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl"></div>
-            </div>
-            </div>
-
-            <div 
-              className="order-2 space-y-6"
-              data-aos="fade-left"
-              data-aos-delay="200"
-            >
-              <div className="space-y-6 text-center lg:text-justify">
-                <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-                  Hello! I'm <span className="bg-gradient-to-r from-blue-400 to-sky-600 bg-clip-text text-transparent">Rich</span>
-                </h2>
-                
-                <div className="space-y-4 text-gray-300 leading-relaxed">
-                  <p className="text-base lg:text-lg">
-                    <strong className="text-white">Final-Year Information System student</strong> at President University with a GPA of 3.92, concentrating in Data Science.
-                  </p>
-                  
-                  <p className="text-base lg:text-lg">
-                    Dedicated and detail-oriented, with a strong passion for organizing and analyzing data. During my college years, i have learned start from web development, business process, and analyze data. Currently focuses on data analysis using Python, SQL, Excel, and Power BI to derive insights and support data-driven decisions.
-                  </p>
-                  
-                  <p className="text-base lg:text-lg">
-                    Besides that, I've actively participated in internal organizations and internship, which have honed my skills in leadership, teamwork, andproblem-solving.
-                  </p>
-                </div>
-
-          
-                <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
-                  <a 
-                    href="#projects" 
-                    className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-all duration-300 text-center shadow-lg shadow-blue-500/25"
-                  >
-                    View Projects
-                  </a>
-                  <a 
-                    href="#contact" 
-                    className="px-6 py-3 border-2 border-blue-500 text-blue-400 font-semibold rounded-lg hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-105 text-center"
-                  >
-                    Contact Me
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 "
-            data-aos="fade-up"
-            data-aos-delay="300"
+    <section
+      id="about"
+      className="relative overflow-hidden bg-[#f7f8fa] px-5 py-24 lg:py-32"
+    >
+      <div
+        className="
+          relative
+          mx-auto
+          w-full
+          max-w-[1750px]
+          px-2
+          lg:px-5
+        "
+      >
+        <div className="grid w-full grid-cols-12 gap-4 lg:gap-5">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="
+              col-span-12
+              flex
+              items-center
+              justify-between
+              border-b
+              border-slate-200
+              pb-3
+              sm:pb-4
+              lg:col-span-1
+              lg:block
+              lg:items-start
+              lg:border-b-0
+              lg:border-r
+              lg:pb-0
+              lg:pr-4
+            "
           >
-            {highlights.map((item, index) => (
-              <div 
-                key={index}
-                className="text-center p-6 bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 group"
+            <div className="flex items-center gap-3 lg:block lg:gap-0">
+              <span className="font-mono text-[10px] text-slate-400">
+                02
+              </span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-400 lg:mt-2 lg:block">
+                Identity
+              </span>
+            </div>
+
+            <p className="text-[9px] uppercase tracking-[0.2em] text-slate-400 lg:hidden">
+              Personal profile
+            </p>
+
+            <div className="hidden lg:mt-32 lg:block">
+              <div className="h-16 w-px bg-slate-300" />
+
+              <p
+                className="
+                  mt-5
+                  [writing-mode:vertical-rl]
+                  text-[9px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.25em]
+                  text-slate-400
+                "
               >
-                <div className="flex justify-center mb-4 text-white group-hover:text-blue-500 transition-colors">
-                  {item.icon}
-                </div>
-                <div className="text-2xl lg:text-3xl font-bold text-white mb-1">
-                  {item.number}
-                </div>
-                <div className="text-gray-400 text-sm font-medium">
-                  {item.label}
+                Personal profile
+              </p>
+            </div>
+          </motion.div>
+
+          <div className="col-span-12 lg:col-span-10 lg:translate-x-[3%]">
+
+            <div className="grid grid-cols-12 gap-5">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-2 col-span-12 lg:order-1 lg:col-span-7"
+            >
+              <div className="mt-10 lg:mt-0">
+                <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-600">
+                  Information Systems × Data Science
+                </p>
+
+                <h2
+                  className="
+                    text-[clamp(3.2rem,8vw,8.5rem)]
+                    lg:text-[clamp(3.5rem,4.6vw,6rem)]
+                    font-black
+                    leading-[0.82]
+                    tracking-[-0.07em]
+                    text-slate-900
+                  "
+                >
+                  RICH
+                  <br />
+                  <span className="ml-[12%] text-blue-600">EDRICK</span>
+                  <br />
+                  <span className="ml-[6%] sm:ml-[24%] lg:ml-[8%] text-slate-500">
+                    ANTHONIOS
+                  </span>
+                </h2>
+              </div>
+
+              <div className="mt-12 max-w-2xl lg:mt-16">
+                <p className="text-[clamp(1.8rem,3.2vw,3.4rem)] font-medium leading-[1.05] tracking-[-0.045em] text-slate-800">
+                  I work where{" "}
+                  <span className="text-blue-600">data</span>{" "}
+                  meets{" "}
+                  <span className="text-slate-400">business</span>{" "}
+                  and digital systems.
+                </p>
+
+                <div className="mt-8 flex max-w-xl gap-5 border-l border-slate-300 pl-5">
+                  <p className="text-sm leading-7 text-slate-500">
+                    Majoring in Information Systems allows me
+                    to approach problems from both the technical and
+                    business side — from building digital systems
+                    to analyzing the data behind them.
+                  </p>
                 </div>
               </div>
-            ))}
+            </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.15,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="relative order-1 col-span-12 lg:order-2 lg:col-span-5 lg:mt-0 lg:self-start"
+              >
+                <div className="relative mx-auto w-full max-w-[470px] lg:ml-auto">
+                  <div className="absolute -left-5 -top-5 h-16 w-16 border-l border-t border-blue-600" />
+
+                  <div className="overflow-hidden border border-slate-200 bg-white p-3">
+                    <img
+                      src={ProfileLogo}
+                      alt="Rich Edrick Anthonios"
+                      className="h-auto w-full object-cover grayscale-[15%]"
+                    />
+                  </div>
+
+                  <div className="absolute -bottom-5 -right-5 h-16 w-16 border-b border-r border-slate-300" />
+
+                  <div className="mt-5 flex items-start justify-between border-t border-slate-200 pt-4">
+                    <div>
+                      <p className="text-[9px] uppercase tracking-[0.2em] text-slate-400">
+                        Status
+                      </p>
+                      <p className="mt-1 text-xs font-semibold text-slate-700">
+                        Fresh Graduate 2026
+                      </p>
+                    </div>
+
+                    <div className="text-right">
+                      <p className="text-[9px] uppercase tracking-[0.2em] text-slate-400">
+                        Focus
+                      </p>
+                      <p className="mt-1 text-xs font-semibold text-blue-600">
+                        Data & Systems
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="mt-24 origin-left border-t border-slate-200"
+            />
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="mt-8"
+            >
+              <div className="mb-10 flex items-center justify-between">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-400">
+                  Highlights
+                </p>
+
+                <p className="font-mono text-[9px] text-slate-300">
+                  04 / 04
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                {highlights.map((item, index) => (
+                  <motion.div
+                    key={item.number}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.08,
+                    }}
+                    className="
+                      group
+                      border-t
+                      border-slate-200
+                      px-0
+                      py-7
+                      md:px-5
+                      lg:min-h-[190px]
+                      lg:border-l
+                      lg:first:border-l-0
+                    "
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[9px] text-slate-300">
+                        {item.number}
+                      </span>
+
+                      <span className="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-300 group-hover:bg-blue-600" />
+                    </div>
+
+                    <p className="mt-8 text-4xl font-black tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-blue-600">
+                      {item.stat}
+                    </p>
+
+                    <p className="mt-2 text-xs font-bold uppercase tracking-[0.15em] text-slate-500">
+                      {item.label}
+                    </p>
+
+                    <p className="mt-2 text-xs text-slate-400">
+                      {item.desc}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <div className="mt-16 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                <span className="text-[9px] uppercase tracking-[0.25em] text-slate-400">
+                  End of identity
+                </span>
+              </div>
+
+              <span className="font-mono text-[9px] text-slate-300">
+                SCROLL ↓
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
-}
+};
 
 export default About;

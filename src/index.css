@@ -10,21 +10,23 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
-    background-color: black; 
+    background-color: #f7f8fa;
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgb(44, 44, 44);
+    background: #f1f2f4;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #449ef3, #4082fc);
+    background: linear-gradient(45deg, #2563eb, #3b82f6);
     border-radius: 10px;
-    border: 3px solid rgb(44, 44, 44); 
+    border: 3px solid #f1f2f4;
 }
 
-
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #1d4ed8, #2563eb);
+}

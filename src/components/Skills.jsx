@@ -1,8 +1,10 @@
-import { 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
   FaHtml5, FaCss3, FaJs, FaBootstrap, FaWordpress, FaPython, FaReact, FaDocker
 } from "react-icons/fa";
-import { 
-  SiTailwindcss, SiPhp, SiJupyter, SiPostgresql, SiStreamlit, SiDjango, SiTensorflow, SiGooglecolab, SiMiro, SiLooker, SiVite 
+import {
+  SiTailwindcss, SiPhp, SiJupyter, SiPostgresql, SiStreamlit, SiDjango, SiTensorflow, SiGooglecolab, SiMiro, SiLooker
 } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import powerbi from "../assets/SkillsAsset/1.png";
@@ -15,173 +17,260 @@ import yolo from "../assets/SkillsAsset/7.png";
 import opencv from "../assets/SkillsAsset/8.png";
 import scikit from "../assets/SkillsAsset/9.png";
 import firebase from "../assets/SkillsAsset/10.png";
+import supabase from "../assets/SkillsAsset/11.webp";
+import mongodb from "../assets/SkillsAsset/12.png";
+import airflow from "../assets/SkillsAsset/13.png";
+import flutter from "../assets/SkillsAsset/14.png";
+import golang from "../assets/SkillsAsset/15.png";
+import tableau from "../assets/SkillsAsset/16.png";
+import excel from "../assets/SkillsAsset/17.png";
+import figma from "../assets/SkillsAsset/18.png";
+import jira from "../assets/SkillsAsset/19.png";
 
+const skillCategories = [
+  {
+    title: "Frontend",
+    skills: [
+      { name: "HTML5", icon: <FaHtml5 />, color: "text-orange-500" },
+      { name: "CSS3", icon: <FaCss3 />, color: "text-blue-500" },
+      { name: "JavaScript", icon: <FaJs />, color: "text-yellow-500" },
+      { name: "Bootstrap", icon: <FaBootstrap />, color: "text-purple-500" },
+      { name: "Tailwind", icon: <SiTailwindcss />, color: "text-cyan-500" },
+      { name: "React", icon: <FaReact />, color: "text-cyan-500" },
+      { name: "Vite", icon: <img src={vite} alt="Vite" className="h-5 w-5" /> },
+      { name: "Flutter", icon: <img src={flutter} alt="Flutter" className="h-5 w-5" /> },
+    ],
+  },
+  {
+    title: "Backend & CMS",
+    skills: [
+      { name: "PHP", icon: <SiPhp />, color: "text-indigo-500" },
+      { name: "Python", icon: <FaPython />, color: "text-blue-500" },
+      { name: "Django", icon: <SiDjango />, color: "text-green-600" },
+      { name: "WordPress", icon: <FaWordpress />, color: "text-blue-500" },
+      { name: "Docker", icon: <FaDocker />, color: "text-blue-500" },
+      { name: "Firebase", icon: <img src={firebase} alt="Firebase" className="h-5 w-5" /> },
+      { name: "Golang", icon: <img src={golang} alt="Golang" className="h-5 w-5" /> },
+    ],
+  },
+  {
+    title: "Database",
+    skills: [
+      { name: "MySQL", icon: <GrMysql />, color: "text-blue-600" },
+      { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-blue-500" },
+      { name: "SQL Server", icon: <img src={sqlserver} alt="SQL Server" className="h-5 w-5" /> },
+      { name: "Supabase", icon: <img src={supabase} alt="Supabase" className="h-5 w-5" /> },
+      { name: "MongoDB", icon: <img src={mongodb} alt="MongoDB" className="h-5 w-5" /> },
+    ],
+  },
+  {
+    title: "Data Science & ML",
+    skills: [
+      { name: "Google Colab", icon: <SiGooglecolab />, color: "text-yellow-500" },
+      { name: "Jupyter", icon: <SiJupyter />, color: "text-orange-500" },
+      { name: "TensorFlow", icon: <SiTensorflow />, color: "text-yellow-600" },
+      { name: "Keras", icon: <img src={keras} alt="Keras" className="h-5 w-5" /> },
+      { name: "Streamlit", icon: <SiStreamlit />, color: "text-red-500" },
+      { name: "YOLO", icon: <img src={yolo} alt="YOLO" className="h-5 w-5" /> },
+      { name: "OpenCV", icon: <img src={opencv} alt="OpenCV" className="h-5 w-5" /> },
+      { name: "Scikit-Learn", icon: <img src={scikit} alt="Scikit-Learn" className="h-5 w-5" /> },
+      { name: "Airflow", icon: <img src={airflow} alt="Airflow" className="h-9 w-9" /> },
+    ],
+  },
+  {
+    title: "Data Visualization",
+    skills: [
+      { name: "Power BI", icon: <img src={powerbi} alt="Power BI" className="h-5 w-5" /> },
+      { name: "Looker Studio", icon: <SiLooker />, color: "text-sky-500" },
+      { name: "Tableau", icon: <img src={tableau} alt="Tableau" className="h-5 w-5" /> },
+      { name: "Excel", icon: <img src={excel} alt="Excel" className="h-5 w-5" /> },
+    ],
+  },
+  {
+    title: "QA & Testing",
+    skills: [
+      { name: "Telerik Test Studio", icon: <img src={telerik} alt="Telerik Test Studio" className="h-5 w-5" /> },
+    ],
+  },
+  {
+    title: "Design & Collaboration",
+    skills: [
+      { name: "Lucidchart", icon: <img src={lucid} alt="Lucidchart" className="h-5 w-5" /> },
+      { name: "Miro", icon: <SiMiro />, color: "text-yellow-500" },
+      { name: "Figma", icon: <img src={figma} alt="Figma" className="h-7 w-8" /> },
+      { name: "Jira", icon: <img src={jira} alt="Jira" className="h-5 w-5" /> },
+    ],
+  },
+];
+
+const totalSkills = skillCategories.reduce((sum, c) => sum + c.skills.length, 0);
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      title: "Frontend Development",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-      ),
-      skills: [
-        { name: "HTML5", icon: <FaHtml5 />, color: "text-orange-500" },
-        { name: "CSS3", icon: <FaCss3 />, color: "text-blue-500" },
-        { name: "JavaScript", icon: <FaJs />, color: "text-yellow-400" },
-        { name: "Bootstrap", icon: <FaBootstrap />, color: "text-purple-500" },
-        { name: "Tailwind", icon: <SiTailwindcss />, color: "text-cyan-400" },
-        { name: "React", icon: <FaReact />, color: "text-cyan-400" },
-        { name: "Vite", icon: <img src={vite} alt="Vite" className="w-10 h-10" />  },
-      ]
-    },
-    {
-      title: "Backend & CMS",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-        </svg>
-      ),
-      skills: [
-        { name: "PHP", icon: <SiPhp />, color: "text-indigo-400" },
-        { name: "Python", icon: <FaPython />, color: "text-blue-400" },
-        { name: "Django", icon: <SiDjango />, color: "text-green-500" },
-        { name: "WordPress", icon: <FaWordpress />, color: "text-blue-400" },
-        { name: "Docker", icon: <FaDocker />, color: "text-blue-500" },
-        { name: "Firebase", icon: <img src={firebase} alt="Firebase" className="w-10 h-10" /> },
-      ]
-    },
-    {
-      title: "Database",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-        </svg>
-      ),
-      skills: [
-        { name: "MySQL", icon: <GrMysql />, color: "text-blue-600" },
-        { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-blue-500" },
-        { name: "SQL Server", icon: <img src={sqlserver} alt="Sql Server" className="w-10 h-10" /> },
-      ]
-    },
-    {
-      title: "Data Science & ML",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
-      ),
-      skills: [
-        { name: "Google Colab", icon: <SiGooglecolab />, color: "text-yellow-500" },
-        { name: "Jupyter", icon: <SiJupyter />, color: "text-orange-500" },
-        { name: "TensorFlow", icon: <SiTensorflow />, color: "text-yellow-600" },
-        { name: "Keras", icon: <img src={keras} alt="Keras" className="w-10 h-10" /> },
-        { name: "Streamlit", icon: <SiStreamlit />, color: "text-red-500" },
-        { name: "Yolo", icon: <img src={yolo} alt="Yolo" className="w-10 h-10" /> },
-        { name: "OpenCV", icon: <img src={opencv} alt="OpenCV" className="w-10 h-10" /> },
-        { name: "Scikit-Learn", icon: <img src={scikit} alt="Scikit-Learn" className="w-10 h-10" /> },
-      ]
-    },
-    {
-      title: "Data Visualization",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-        </svg>
-      ),
-      skills: [
-        { name: "Power BI", icon: <img src={powerbi} alt="Power BI" className="w-10 h-10" /> },
-        { name: "Looker Studio", icon: <SiLooker />, color: "text-sky-400" },
-      ]
-    },
-    {
-      title: "Quality Assurance & Testing",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
-        </svg>
-      ),
-      skills: [
-        { name: "Telerik Test Studio", icon: <img src={telerik} alt="Telerik Test Studio" className="w-10 h-10" /> },
-      ]
-    },
-    {
-      title: "Design & Collaboration",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      ),
-      skills: [
-        { name: "Lucid Chart", icon: <img src={lucid} alt="Lucid Chart" className="w-10 h-10" /> },
-        { name: "Miro", icon: <SiMiro />, color: "bg-yellow-500 rounded-lg" },
-      ]
-    },
-  ];
+  const [active, setActive] = useState(0);
+  const current = skillCategories[active];
 
   return (
-    <section id="skills" className="relative py-20 bg-transparent">
-      <div className="container mx-auto px-6 relative">
-        <div className="text-center mb-16">
-          <p className="text-blue-400 text-sm font-medium tracking-wider uppercase mb-3"
-            data-aos="fade-up">
-            My Expertise
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4"
-            data-aos="fade-up" 
-            data-aos-delay="100">
-            Skills & Technologies
-          </h2>
-          <div 
-            className="w-16 h-1 bg-blue-500 mx-auto"
-            data-aos="zoom-in" 
-            data-aos-delay="200"
-          ></div>
-        </div>
-
-        <div className="space-y-12">
-          {skillCategories.map((category, categoryIndex) => (
-            <div 
-              key={categoryIndex}
-              data-aos="fade-up"
-              data-aos-delay={categoryIndex * 100}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400">
-                  {category.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-white">
-                  {category.title}
-                </h3>
-                <div className="flex-1 h-px bg-gray-800"></div>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div
-                    key={skillIndex}
-                    className="group relative bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
-                    data-aos="zoom-in"
-                    data-aos-delay={skillIndex * 50}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-blue-500/0 group-hover:from-blue-500/5 group-hover:to-transparent rounded-xl transition-all duration-300"></div>
-                    
-                    <div className="relative z-10 flex flex-col items-center text-center">
-                      <div className={`text-4xl mb-3 transition-all duration-300 group-hover:scale-110 ${skill.color || 'text-gray-400'}`}>
-                        {skill.icon}
-                      </div>
-                      
-                      <h4 className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
-                        {skill.name}
-                      </h4>
-                    </div>
-                  </div>
-                ))}
-              </div>
+    <section
+      id="skills"
+      className="relative overflow-hidden bg-[#f7f8fa] px-5 py-24 lg:py-32"
+    >
+      <div
+        className="
+          relative
+          mx-auto
+          w-full
+          max-w-[1750px]
+          px-2
+          lg:px-5
+        "
+      >
+        <div className="grid w-full grid-cols-12 gap-4 lg:gap-5">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="
+              col-span-12
+              flex
+              items-center
+              justify-between
+              border-b
+              border-slate-200
+              pb-3
+              sm:pb-4
+              lg:col-span-1
+              lg:block
+              lg:items-start
+              lg:border-b-0
+              lg:border-r
+              lg:pb-0
+              lg:pr-4
+            "
+          >
+            <div className="flex items-center gap-3 lg:block lg:gap-0">
+              <span className="font-mono text-[10px] text-slate-400">04</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-400 lg:mt-2 lg:block">
+                Skills
+              </span>
             </div>
-          ))}
+
+            <p className="text-[9px] uppercase tracking-[0.2em] text-slate-400 lg:hidden">
+              Toolset
+            </p>
+
+            <div className="hidden lg:mt-32 lg:block">
+              <div className="h-16 w-px bg-slate-300" />
+              <p className="mt-5 [writing-mode:vertical-rl] text-[9px] font-semibold uppercase tracking-[0.25em] text-slate-400">
+                Toolset
+              </p>
+            </div>
+          </motion.div>
+
+          <div className="col-span-12 lg:col-span-10 lg:translate-x-[3%]">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="mb-12 flex flex-wrap items-end justify-between gap-4"
+            >
+              <div>
+                <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-600">
+                  Tools & technologies
+                </p>
+                <h2 className="text-[clamp(2.4rem,5vw,4.5rem)] font-black leading-[0.95] tracking-[-0.04em] text-slate-900">
+                  Skills
+                </h2>
+              </div>
+
+              <p className="font-mono text-[9px] text-slate-300">
+                {totalSkills} tools · {skillCategories.length} areas
+              </p>
+            </motion.div>
+
+            <div className="flex flex-wrap gap-x-8 gap-y-3 border-b border-slate-200 pb-6">
+              {skillCategories.map((cat, index) => {
+                const isActive = index === active;
+                return (
+                  <button
+                    key={cat.title}
+                    onClick={() => setActive(index)}
+                    className={`
+                      relative
+                      pb-2
+                      text-sm
+                      font-medium
+                      transition-colors
+                      ${isActive ? "text-slate-900" : "text-slate-400 hover:text-slate-600"}
+                    `}
+                  >
+                    {cat.title}
+                    {isActive && (
+                      <motion.span
+                        layoutId="skills-underline"
+                        className="absolute -bottom-[1px] left-0 h-[2px] w-full bg-blue-600"
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Skill pills */}
+            <div className="mt-8 min-h-[140px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.title}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-wrap gap-3"
+                >
+                  {current.skills.map((skill) => (
+                    <div
+                      key={skill.name}
+                      className="
+                        group
+                        flex
+                        items-center
+                        gap-2.5
+                        rounded-full
+                        border
+                        border-slate-200
+                        bg-white
+                        px-4
+                        py-2.5
+                        transition-colors
+                        hover:border-blue-300
+                      "
+                    >
+                      <span className={`flex h-5 w-5 items-center justify-center text-base ${skill.color || "text-slate-500"}`}>
+                        {skill.icon}
+                      </span>
+                      <span className="text-xs font-medium text-slate-600 transition-colors group-hover:text-slate-900">
+                        {skill.name}
+                      </span>
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Bottom line */}
+            <div className="mt-16 flex items-center justify-between border-t border-slate-200 pt-8">
+              <div className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                <span className="text-[9px] uppercase tracking-[0.25em] text-slate-400">
+                  End of skills
+                </span>
+              </div>
+              <span className="font-mono text-[9px] text-slate-300">SCROLL ↓</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
