@@ -208,7 +208,7 @@ const Hero = () => {
                   </p>
 
                   <p className="mt-1 text-xl font-bold tracking-tight text-slate-800">
-                    3.93 / 4.00
+                    3.91 / 4.00
                   </p>
                 </div>
 

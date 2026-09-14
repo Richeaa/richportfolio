@@ -5,7 +5,7 @@ const highlights = [
   { number: "01", stat: "15+", label: "Projects", desc: "Web & data-driven builds" },
   { number: "02", stat: "10+", label: "Volunteer", desc: "Community & campus programs" },
   { number: "03", stat: "8+", label: "Certificates", desc: "Data & software credentials" },
-  { number: "04", stat: "3.93", label: "GPA", desc: "Out of 4.00 scale" },
+  { number: "04", stat: "3.91", label: "GPA", desc: "Out of 4.00 scale" },
 ];
 
 const About = () => {
