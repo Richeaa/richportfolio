@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const experiences = [
   {
-    company: "Schneider Indonesia",
+    company: "Schneider Electric",
     location: "Jakarta",
     role: "Finance Intern",
     period: "Mar 2026 — Present",
