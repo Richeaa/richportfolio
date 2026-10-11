@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import animation from "../assets/Animation.json";
-import CV from "../assets/CV/RichEdrickAnthonios_CurriculumVitae.pdf";
+import CV from "../assets/CV/CV_RichEdrickAnthonios.pdf";
 import {
   ArrowUpRightIcon,
   ArrowDownTrayIcon,
@@ -349,7 +349,7 @@ const Hero = () => {
               <div className="flex gap-2">
                 <a
                   href={CV}
-                  download="RichEdrickAnthonios_CurriculumVitae.pdf"
+                  download="CV_Rich Edrick Anthonios.pdf"
                   className="
                     group
                     flex
